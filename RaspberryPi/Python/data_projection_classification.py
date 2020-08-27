@@ -8,7 +8,7 @@ from tsfresh.utilities.dataframe_functions import impute
 from sklearn.preprocessing import StandardScaler
 import glob
 
-def dynamic_tsfresh ():
+def dynamic_tsfresh (output_id):
 
     #Changing Work Folder    
     add_path1 = "/Input"
@@ -24,7 +24,7 @@ def dynamic_tsfresh ():
 
     # Load the the filtered features from the seed data-set
 
-    features_filtered = pd.read_csv('{}/features_filtered_3.csv'.format(Kernel_path))
+    features_filtered = pd.read_csv('{}/features_filtered_{}.csv'.format(Kernel_path, output_id))
 
     # Extract the useful information of it
 

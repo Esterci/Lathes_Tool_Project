@@ -4,6 +4,8 @@ import numpy as np
 from datetime import datetime
 import data_projection_classification as dpc
 
+output_id = 3 # id da base de dados utilizada como seed
+
 # paths
 raspberry_path = os.path.dirname(os.path.dirname(__file__))
 kernel_path = raspberry_path + '/IPython/.Kernel'
@@ -48,7 +50,7 @@ try:
 
             ### -------- final da formatação -------- ###
 
-            features = dpc.dynamic_tsfresh()
+            features = dpc.dynamic_tsfresh(output_id)
 
             projected_data = dpc.PCA_projection(features)
 
