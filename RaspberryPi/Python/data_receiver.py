@@ -40,8 +40,11 @@ try:
             for i in range(int(rows/N)):
                 data[i*N:(i+1)*N,0] = N*[i+1]
                 data[i*N:(i+1)*N,1] = time_id
-
-            data[:,2:] = raw_data[:,0:6] # os dados brutos dos 6 primeiros canais são passados para o array com os dados divididos
+            
+            for i in range(2,8):
+                num = 2*(raw_data[:,i]-raw_data[:,i].min())
+                den = (raw_data[:,i].max()-raw_data[:,i].min())
+                data[:,i] = num/den - 1 # os dados brutos dos 6 primeiros canais são passados para o array com os dados normalizados
 
             # salva o array formatado na pasta input
             now = datetime.now()
