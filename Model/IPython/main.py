@@ -5,11 +5,11 @@ import main_numpy as mn
 import tkinter as tk
 
 def prediction(output_id):
-    features = dynamic_tsfresh(output_id)
+    features = dpc.dynamic_tsfresh(output_id)
 
-    projected_data = PCA_projection(features)
+    projected_data = dpc.PCA_projection(features)
 
-    label = Model_Predict(projected_data)
+    label = dpc.Model_Predict(projected_data)
     
     return label
 
