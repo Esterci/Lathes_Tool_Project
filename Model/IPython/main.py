@@ -1,33 +1,35 @@
 import Data_Projection_Classification as dpc
 import main_numpy as mn
-import multiprocessing
-from multiprocessing import Process
+#import multiprocessing
+#from multiprocessing import Process
 import tkinter as tk
 
-def prediction(output_id, label):
+def prediction(output_id):
     features = dynamic_tsfresh(output_id)
 
     projected_data = PCA_projection(features)
 
     label = Model_Predict(projected_data)
+    
+    return label
 
 def acquisition():
     output_id = 1
-    
-    PROCESSES = 2
-    
-    aq = Process(target=mn.acquire) # 
-    aq.start()
+    #PROCESSES = 2
+    mn.acquire()
+    #aq = Process(target=mn.acquire) # 
+    #aq.start()
+       
+    label = prediction(output_id)
+    #ret_value = multiprocessing.Value("d",0,lock=False)
+    #pr = Process(target=prediction, args=(output_id, ret_value))
+    #pr.start()
         
-    ret_value = multiprocessing.Value("d",0,lock=False)
-    pr = Process(target=prediction, args=(output_id, ret_value))
-    pr.start()
         
-        
-    aq.join()
-    pr.join()
+    #aq.join()
+    #pr.join()
     
-    label = ret_value.value
+    #label = ret_value.value
     if label == 0:
         lbl.configure(text='Ferramenta Boa')
     else:
